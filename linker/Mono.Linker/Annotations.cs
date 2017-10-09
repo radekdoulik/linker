@@ -337,6 +337,11 @@ namespace Mono.Linker {
 			if (o is IMetadataTokenProvider)
 				return (o as IMetadataTokenProvider).MetadataToken.TokenType + ":" + o;
 
+			if (o is CustomAttribute) {
+				var ca = o as CustomAttribute;
+				return $"CA:{TokenString ((object)ca.AttributeType ?? o)}";
+			}
+
 			return "Other:" + o;
 		}
 
